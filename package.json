@@ -1,6 +1,6 @@
 {
   "name": "happn-password-hash-and-salt",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple, safe and straight-forward password hashing / salting for node.js",
   "main": "index.js",
   "scripts": {
