@@ -30,7 +30,7 @@
   "author": "Florian Heinemann <florian.heinemann@gmail.com> (http://twitter.com/florian__h)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/florianheinemann/password-hash-and-salt/issues"
+    "url": "https://github.com/happner/password-hash-and-salt/issues"
   },
-  "homepage": "https://github.com/florianheinemann/password-hash-and-salt"
+  "homepage": "https://github.com/happner/password-hash-and-salt"
 }
