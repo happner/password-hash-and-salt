@@ -1,10 +1,12 @@
+
 happn-password-hash-and-salt
 ======================
 
 forked from https://github.com/florianheinemann/password-hash-and-salt.git
 version 1.1.4
 
-This module provides straight-forward password hashing for node.js applications using default settings considered to be safe. SHA512 is used by default, also backward compatible with previous versions that used SHA1.
+####This module provides straight-forward password hashing for node.js applications using default settings considered to be safe. SHA512 is used by default, also backward compatible with previous versions that used SHA1.
+
 
 ### Usage
 
@@ -53,5 +55,4 @@ This allows for future upgrades of the algorithm and/or increased number of iter
 express-sslify is licensed under the MIT license. If you'd like to be informed about new projects follow   [@TheSumOfAll](http://twitter.com/TheSumOfAll/).
 
 Copyright (c) 2013-2014 Florian Heinemann
-
 Modified by S. Bishop
