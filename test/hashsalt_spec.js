@@ -105,7 +105,7 @@ describe('Password hash and salt', function() {
 				});
 			});
 		});
-		
+
 		it('should not verify with empty salt', function (done) {
 			password('secret').verifyAgainst('pbkdf2$10000$5e45$', function(error2, validated) {
 				expect(error2).to.exist;
@@ -113,7 +113,7 @@ describe('Password hash and salt', function() {
 				done();
 			});
 		});
-		
+
 		it('should not verify with empty hash', function (done) {
 			password('secret').verifyAgainst('pbkdf2$10000$$5e45', function(error2, validated) {
 				expect(error2).to.exist;
@@ -121,7 +121,7 @@ describe('Password hash and salt', function() {
 				done();
 			});
 		});
-		
+
 		it('should not verify with wrong or empty algorithm', function (done) {
 			password('secret').verifyAgainst('$10000$5e45$5e45', function(error2, validated) {
 				expect(error2).to.exist;
@@ -133,7 +133,7 @@ describe('Password hash and salt', function() {
 				});
 			});
 		});
-		
+
 		it('should not verify with wrong or empty iterations', function (done) {
 			password('secret').verifyAgainst('pbkdf2$$5e45$5e45', function(error2, validated) {
 				expect(error2).to.exist;
@@ -145,7 +145,7 @@ describe('Password hash and salt', function() {
 				});
 			});
 		});
-		
+
 		it('should not verify with wrongly formatted hash - 1', function (done) {
 			password('secret').verifyAgainst('random characters', function(error2, validated) {
 				expect(error2).to.exist;
@@ -153,7 +153,7 @@ describe('Password hash and salt', function() {
 				done();
 			});
 		});
-		
+
 		it('should not verify with wrongly formatted hash - 2', function (done) {
 			password('secret').verifyAgainst('alg$1000$5e45$5e45$something', function(error2, validated) {
 				expect(error2).to.exist;
@@ -217,6 +217,28 @@ describe('Password hash and salt', function() {
 				});
 
 			}, 'sha1');
+		});
+
+		it('should set iterations on create and verify', function (done) {
+			password('secret', 1000).hash(function(error1, key1) {
+				var split = splitHash(key1);
+				expect(split.algorithm).to.equal('pbkdf2');
+				expect(split.iterations).to.equal('1000');
+				password('secret').hash(function(error2, key2) {
+					var split = splitHash(key2);
+					expect(split.algorithm).to.equal('pbkdf2');
+					expect(split.iterations).to.equal('10000');
+					password('secret', 1000).verifyAgainst(key1, function(error3, validated) {
+						expect(error3).to.not.exist;
+						expect(validated).to.equal(true);
+						password('secret').verifyAgainst(key2, function(error4, validated) {
+							expect(error4).to.not.exist;
+							expect(validated).to.equal(true);
+							done();
+						});
+					});
+				});
+			});
 		});
 	});
 });
