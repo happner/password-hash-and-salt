@@ -16,7 +16,7 @@ First, install the module:
 
 Afterwards, usage is as simple as shown in the following example:
 ```javascript
-var password = require('password-hash-and-salt');
+var password = require('happn-password-hash-and-salt');
 
 var myuser = [];
 
